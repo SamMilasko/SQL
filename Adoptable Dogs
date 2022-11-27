@@ -1,0 +1,21 @@
+CREATE TABLE dog_shop(id INTEGER PRIMARY KEY, breed TEXT, sprayed_or_neutered TEXT, shots TEXT, price INTEGER);
+
+INSERT INTO dog_shop VALUES
+(1,"pit bull","yes","no", 150),
+(2,"chihuahua","no","no", 200),
+(3,"jack russell","no","yes", 250), 
+(4,"pit bull", "yes","yes", 100),
+(5,"labrador","yes","yes",400),
+(6,"doodle","no","no",1000),
+(7,"bull dog","yes","no",200),
+(8,"golden retriever","no","no",1000),
+(9,"unknown","yes","yes",150),
+(10,"chihuahua","yes","yes",400),
+(11,"husky","yes","yes",1500),
+(12,"pug","yes","no",600),
+(13,"unknown","yes","no",150),
+(14,"husky","no","no",1200),
+(15,"german sherpard","yes","yes",2000);
+
+SELECT breed, price FROM dog_shop ORDER BY price;
+SELECT breed, COUNT(breed) FROM dog_shop GROUP BY breed;
