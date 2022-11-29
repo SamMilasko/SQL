@@ -8,7 +8,7 @@ Select COUNT(orderID) FROM JanSales;
 SELECT COUNT(Product) FROM JanSales
 WHERE product = "iPhone";
 
----Select the customer account numbers for all the orders that were placed in February.; NEED TO GET MORE FAMILAR WITH JOINS  
+---Select the customer account numbers for all the orders that were placed in February.; 
 
 SELECT customers.acctnum
 FROM customers
@@ -19,18 +19,17 @@ ON customers.order_id = FebSales.orderID;
 SELECT  Product, MIN(price) FROM JanSales
 ORDER BY price LIMIT 1;
 
----What is the total revenue for each product sold in January? (Revenue can be calculated using the number of products sold and the price of the products).; NEED TO REMEMBER TO ADD GROUP BY WHEN USING AGGREGATE FUNCTIONS
+---What is the total revenue for each product sold in January? (Revenue can be calculated using the number of products sold and the price of the products).; 
 SELECT sum(quantity)*price as revenue, product
 FROM JanSales
 GROUP BY product;
 
----Which products were sold in February at 548 Lincoln St, Seattle, WA 98101, how many of each were sold, and what was the total revenue?; NEED TO REMEMBER TO ADD GROUP BY WHEN USING AGGREGATE FUNCTIONS
-SELECT Product, Quantity, price, SUM(Quantity)*price AS revenue
+---Which products were sold in February at 548 Lincoln St, Seattle, WA 98101, how many of each were sold, and what was the total revenue?; 
 FROM FebSales
 WHERE location = "548 Lincoln St, Seattle, WA 98101"
 GROUP BY Product;
 
----How many customers ordered more than 2 products at a time in February, and what was the average amount spent for those customers? ; NEED TO PRACTICE MORE
+---How many customers ordered more than 2 products at a time in February, and what was the average amount spent for those customers? ; 
 select 
 count(distinct cust.acctnum), 
 avg(quantity*price)
