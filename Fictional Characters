@@ -1,0 +1,52 @@
+CREATE TABLE fictional_characters
+(id INTEGER PRIMARY KEY, first_name TEXT, last_name TEXT, show TEXT);
+INSERT INTO fictional_characters VALUES
+(1, "Wednesday", "Addams", "Wednesday"),
+(2, "Enid", "Sinclair", "Wednesday"),
+(3, "Yang", "Xiao Long", "RWBY"),
+(4, "Ruby", "Rose", "RWBY"),
+(5, "Blake", "Belladonna", "RWBY"),
+(6, "Ava", "NULL", "Warrior Nun"), 
+(7, "Bea", "NULL", "Warrior Nun"), 
+(8, "Percy", "Jackson", "Percy Jackson and the Olympians"), 
+(9, "Annabeth", "Chase", "Percy Jackon and the Olympians");
+
+
+CREATE TABLE shows
+(id INTEGER PRIMARY KEY, title TEXT, production_company TEXT);
+INSERT INTO shows VALUES
+(1, "Wednesday", "Netflix"),
+(2, "RWBY", "Roosterteeth"), 
+(3, "Warrior Nun", "Netflix"), 
+(4, "Percy Jackson and the Olympians", "Disney");
+
+CREATE TABLE character_relationships
+(person1_id INTEGER, person2_id INTEGER, relationship TEXT, show_id INTEGER);
+INSERT INTO character_relationships VALUES
+(1, 2, "room mates", 1), 
+(2, 1,  "room mates", 1), 
+(3, 4, "sisters", 2), 
+(3, 5, "lovers", 2), 
+(4, 3, "sisters", 2), 
+(4, 5, "leader", 2), 
+(5, 3, "lovers", 2), 
+(5, 4, "team mate", 2), 
+(6, 7, "room mates", 3), 
+(7, 6, "room mates", 3), 
+(8, 9, "team mates", 4),
+(9, 8, "team mates", 4);
+
+SELECT s.title, s.production_company, cr.relationship
+FROM shows s
+JOIN character_relationships cr
+ON s.id = cr.show_id;
+
+
+SELECT fc.first_name AS person1, fc2.first_name AS person2, s.title AS show, s.production_company, cr.relationship
+FROM shows s
+JOIN character_relationships cr
+ON s.id = cr.show_id
+JOIN fictional_characters fc
+ON fc.id = cr.person1_id
+JOIN fictional_characters fc2
+ON fc2.id = cr.person2_id;
