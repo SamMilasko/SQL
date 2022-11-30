@@ -1,0 +1,22 @@
+CREATE TABLE stardew_valley
+(day INTEGER, season TEXT, year INTEGER, farming_xp INTEGER, fishing_xp INTEGER, mining_xp INTEGER, foraging_xp INTEGER);
+
+INSERT INTO stardew_valley
+VALUES( 1, "spring", 1, 40, 10, 50, 100), 
+(2, "summer", 1, 1200, 500, 200, 800), 
+(4, "fall", 1, 4000, 1000, 600, 1400), 
+(20, "winter", 2, 8000, 1400, 1000, 2400);
+
+SELECT * FROM stardew_valley;
+
+BEGIN TRANSACTION;
+INSERT INTO stardew_valley(day, season, year, farming_xp, fishing_xp, mining_xp, foraging_xp)
+VALUES(15,"summer", 1, 1400, 600, 250, 100);
+UPDATE stardew_valley SET year = 2
+WHERE day = 2;
+DELETE FROM stardew_valley
+WHERE day = 20;
+COMMIT;
+
+
+SELECT * FROM stardew_valley;
